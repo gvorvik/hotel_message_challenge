@@ -11,6 +11,6 @@
     },
     {
         "messageDescription": "Welcome",
-        "messageText": "Hello ${firstName}, and welcome to ${hotelName}. Thank you for choosing us, and enjoy your stay!"
+        "messageText": "`Hello ${firstName}, and welcome to ${hotelName}. Thank you for choosing us, and enjoy your stay!`"
     }
 ]

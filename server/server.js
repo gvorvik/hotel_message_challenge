@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const guests = require('./modules/Guests.json');
 const companies = require('./modules/Companies.json');
+const messages = require('./modules/Messages.json');
 
 const app = express();
 const PORT = 5000;
@@ -15,6 +16,10 @@ app.get('/api/guests', (req, res) => {
 
 app.get('/api/companies', (req, res) => {
     res.send(companies);
+})
+
+app.get('/api/messages', (req, res) => {
+    res.send(messages);
 })
 
 app.listen(PORT, () => {

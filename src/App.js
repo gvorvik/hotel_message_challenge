@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 import Guests from './components/Guests/Guests';
 import Companies from './components/Companies/Companies';
+import Message from './components/Message/Message';
 
 class App extends Component {
   constructor() {
@@ -11,6 +12,19 @@ class App extends Component {
     this.state = {
       guests: [],
       companies: [],
+      messages: [],
+      selectedGuest: {
+
+      },
+      selectedCompany: {
+        id: '',
+        company: '',
+        city: '',
+        timezone: ''
+      },
+      selectedMessage: {
+
+      },
     }
 
   }
@@ -18,6 +32,7 @@ class App extends Component {
   componentDidMount() {
     this.getGuests();
     this.getCompanies();
+    this.getMessages();
   }
 
   getGuests = () => {
@@ -38,6 +53,34 @@ class App extends Component {
     .catch(err => console.log(err))
   }
 
+  getMessages = () => {
+    axios({
+      method: 'GET',
+      url: '/api/messages'
+    })
+    .then(response=> this.setState({messages: response.data}))
+    .catch(err=>console.log(err))
+  }
+
+  handleGuestSelect = (e) => {
+    let selectedGuest;
+    this.state.guests.forEach(guest => {
+      if(guest.id === Number(e.target.value)) {
+        return selectedGuest = guest;
+      }
+    });
+    this.setState({selectedGuest});
+  }
+
+  handleCompanySelect = (e) => {
+    let selectedCompany;
+    this.state.companies.forEach(guest => {
+      if(guest.id === Number(e.target.value)) {
+        return selectedCompany = guest;
+      }
+    });
+    this.setState({selectedCompany});
+  }
 
   render() {
     return (
@@ -47,9 +90,15 @@ class App extends Component {
         </header>
         <Guests 
           guests={this.state.guests}
+          handleSelect={this.handleGuestSelect}
         />
         <Companies 
           companies={this.state.companies}
+          handleSelect={this.handleCompanySelect}
+        />
+        <Message 
+          selectedCompany={this.state.selectedCompany}
+          selectedGuest={this.state.selectedGuest}
         />
       </div>
     );
