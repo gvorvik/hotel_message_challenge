@@ -1,0 +1,16 @@
+[
+    {
+      "message": 1,
+      "firstName": "Candy",
+      "lastName": "Pace",
+      "reservation": {
+        "roomNumber": 529,
+        "startTimestamp": 1486654792,
+        "endTimestamp": 1486852373
+      }
+    },
+    {
+        "messageDescription": "Welcome",
+        "messageText": "Hello ${firstName}, and welcome to ${hotelName}. Thank you for choosing us, and enjoy your stay!"
+    }
+]
