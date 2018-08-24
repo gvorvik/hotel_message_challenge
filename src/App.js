@@ -4,6 +4,7 @@ import './App.css';
 import Guests from './components/Guests/Guests';
 import Companies from './components/Companies/Companies';
 import Message from './components/Message/Message';
+import NewMessage from './components/NewMessage/NewMessage';
 
 class App extends Component {
   constructor() {
@@ -13,8 +14,23 @@ class App extends Component {
       guests: [],
       companies: [],
       messages: [],
-      selectedGuest: {},
-      selectedCompany: {},
+      selectedGuest: {
+        id: '',
+        greeting: '',
+        firstName: '',
+        lastName: '',
+        reservation: {
+          roomNumber: '',
+          startTimestamp: '',
+          endTimestamp: ''
+        }
+      },
+      selectedCompany: {
+        id: '',
+        company: '',
+        city: '',
+        timezone: ''
+      },
       selectedMessage: {},
       finalMessage: '',
     }
@@ -62,7 +78,8 @@ class App extends Component {
         return selectedGuest = guest;
       }
     });
-    this.setState({selectedGuest: {...this.state.selectedGuest, selectedGuest}});
+    console.log(selectedGuest);
+    this.setState({selectedGuest: {...this.state.selectedGuest, ...selectedGuest}});
   }
 
   handleCompanySelect = (e) => {
@@ -117,6 +134,12 @@ class App extends Component {
     }
   }
 
+  addMessageTemplate = (message) => {
+    let messageToAdd = {...message, id: this.state.messages.length + 1};
+    console.log(messageToAdd);
+    this.setState({messages: [...this.state.messages, messageToAdd]});
+  }
+
   render() {
     return (
       <div className="App">
@@ -135,6 +158,11 @@ class App extends Component {
         />
         <p>{this.state.finalMessage}</p>
         <button onClick={this.setFinalMessageText}>Generate Message</button>
+        <NewMessage 
+          selectedGuest={this.state.selectedGuest}
+          selectedCompany={this.state.selectedCompany}
+          addMessageTemplate={this.addMessageTemplate}
+        />
 
       </div>
     );

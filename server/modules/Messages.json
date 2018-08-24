@@ -17,7 +17,7 @@
     {
       "id": 4,
       "messageDescription": "Weather",
-      "messageText": "%greeting% %firstName%, it looks like it's going to be a nice day here in %city%."
+      "messageText": "%greeting% %firstName%, it looks like it's going to be a nice day here in %city%. Let us know if you have questions about things to do in the city."
     },
     {
       "id": 5,
