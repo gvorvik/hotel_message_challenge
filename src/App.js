@@ -13,18 +13,10 @@ class App extends Component {
       guests: [],
       companies: [],
       messages: [],
-      selectedGuest: {
-
-      },
-      selectedCompany: {
-        id: '',
-        company: '',
-        city: '',
-        timezone: ''
-      },
-      selectedMessage: {
-
-      },
+      selectedGuest: {},
+      selectedCompany: {},
+      selectedMessage: {},
+      finalMessage: '',
     }
 
   }
@@ -33,6 +25,7 @@ class App extends Component {
     this.getGuests();
     this.getCompanies();
     this.getMessages();
+    this.setGreeting();
   }
 
   getGuests = () => {
@@ -69,25 +62,65 @@ class App extends Component {
         return selectedGuest = guest;
       }
     });
-    this.setState({selectedGuest});
+    this.setState({selectedGuest: {...this.state.selectedGuest, selectedGuest}});
   }
 
   handleCompanySelect = (e) => {
     let selectedCompany;
-    this.state.companies.forEach(guest => {
-      if(guest.id === Number(e.target.value)) {
-        return selectedCompany = guest;
+    this.state.companies.forEach(company => {
+      if(company.id === Number(e.target.value)) {
+        return selectedCompany = company;
       }
     });
     this.setState({selectedCompany});
   }
 
+  handleMessageSelect = (e) => {
+    let selectedMessage;
+    this.state.messages.forEach(message => {
+      if(message.id === Number(e.target.value)) {
+        selectedMessage = message;
+      }
+    });
+    this.setState({selectedMessage});
+  }
+
+  setFinalMessageText = () => {
+    let message = this.state.selectedMessage.messageText;
+    let variables = {...this.state.selectedCompany, ...this.state.selectedGuest};
+    message = this.replacePlaceholders(variables, message);
+    this.setState({finalMessage: message})
+    return message;
+  }
+
+  replacePlaceholders = (obj, message) => {
+    for(let i in obj) {
+      if(typeof obj[i] !== "object") {
+        message = message.replace('%' + i + '%', obj[i]);
+      } else {
+        message = this.replacePlaceholders(obj[i], message);
+      }
+    }
+    return message;
+  }
+
+  setGreeting = () => {
+    var today = new Date()
+    var curHr = today.getHours()
+
+    if (curHr < 12) {
+      return this.setState({selectedGuest:{...this.state.selectedGuest, greeting: 'Good morning'}});
+    } else if (curHr < 18) {
+      return this.setState({selectedGuest:{...this.state.selectedGuest, greeting: 'Good afternoon'}});
+    } else {
+      return this.setState({selectedGuest:{...this.state.selectedGuest, greeting: 'Good evening'}});
+    }
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Message Generator</h1>
-        </header>
+        <h1 className="App-title">Message Generator</h1>
         <Guests 
           guests={this.state.guests}
           handleSelect={this.handleGuestSelect}
@@ -97,9 +130,12 @@ class App extends Component {
           handleSelect={this.handleCompanySelect}
         />
         <Message 
-          selectedCompany={this.state.selectedCompany}
-          selectedGuest={this.state.selectedGuest}
+          messages={this.state.messages}
+          handleMessageSelect={this.handleMessageSelect}
         />
+        <p>{this.state.finalMessage}</p>
+        <button onClick={this.setFinalMessageText}>Generate Message</button>
+
       </div>
     );
   }

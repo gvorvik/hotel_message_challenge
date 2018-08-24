@@ -1,16 +1,27 @@
 [
     {
-      "message": 1,
-      "firstName": "Candy",
-      "lastName": "Pace",
-      "reservation": {
-        "roomNumber": 529,
-        "startTimestamp": 1486654792,
-        "endTimestamp": 1486852373
-      }
+        "id": 1,
+        "messageDescription": "Welcome",
+        "messageText": "%greeting% %firstName%, and welcome to %company%. Please feel free to settle in to room %roomNumber%, and give us a call if you have any questions. Thank you, and enjoy your stay!"
     },
     {
-        "messageDescription": "Welcome",
-        "messageText": "`Hello ${firstName}, and welcome to ${hotelName}. Thank you for choosing us, and enjoy your stay!`"
+      "id": 2,
+      "messageDescription": "Goodbye",
+      "messageText": "%greeting% %firstName%, thanks so much for staying, and we hope to see you again!"
+    },
+    {
+      "id": 3,
+      "messageDescription": "Breakfast",
+      "messageText": "%greeting% %firstName% %lastName%, just so you know breakfast will be served until 11AM"
+    },
+    {
+      "id": 4,
+      "messageDescription": "Weather",
+      "messageText": "%greeting% %firstName%, it looks like it's going to be a nice day here in %city%."
+    },
+    {
+      "id": 5,
+      "messageDescription": "Housekeeping",
+      "messageText": "%greeting% %firstName%, is now a good time for housekeeping to visit room %roomNumber%? Please text back yes or no."
     }
 ]
