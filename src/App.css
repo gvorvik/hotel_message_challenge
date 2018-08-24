@@ -6,10 +6,26 @@
   font-size: 1.5em;
 }
 
-#addTemplate {
+#customTemplateDiv {
+  padding-top: 40px;
+}
+
+#customTemplateDiv div {
+  padding: 15px 0; 
+}
+
+
+
+button {
+  margin: 5px;
+  padding: 5px;
+}
+
+.btnImportant {
   font-size: 1em;
   display: block;
-  margin: 0 auto;
+  margin: 20px auto;
 }
+
 
 

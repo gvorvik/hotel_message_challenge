@@ -22,6 +22,12 @@ app.get('/api/messages', (req, res) => {
     res.send(messages);
 })
 
+app.post('/api/newmessage', (req, res) => {
+    console.log(req.body);
+    messages.push(req.body);
+    res.sendStatus(200)
+})
+
 app.listen(PORT, () => {
     console.log('app listening at port 5000');
 });

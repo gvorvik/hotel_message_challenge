@@ -31,7 +31,12 @@ class App extends Component {
         city: '',
         timezone: ''
       },
-      selectedMessage: {},
+      selectedMessage: {
+        id: '',
+        messageDescription: '',
+        messageText: '',
+      },
+      show: false,
       finalMessage: '',
     }
 
@@ -103,6 +108,13 @@ class App extends Component {
   }
 
   setFinalMessageText = () => {
+    if(this.state.selectedGuest.firstName === '') {
+      return alert('Please select a guest.');
+    }else if(this.state.selectedCompany.company === '') {
+      return alert('Please select a company.');
+    }else if(this.state.selectedMessage.messageText === '') {
+      return alert('Please select a message template.');
+    }
     let message = this.state.selectedMessage.messageText;
     let variables = {...this.state.selectedCompany, ...this.state.selectedGuest};
     message = this.replacePlaceholders(variables, message);
@@ -124,7 +136,6 @@ class App extends Component {
   setGreeting = () => {
     var today = new Date()
     var curHr = today.getHours()
-
     if (curHr < 12) {
       return this.setState({selectedGuest:{...this.state.selectedGuest, greeting: 'Good morning'}});
     } else if (curHr < 18) {
@@ -136,35 +147,50 @@ class App extends Component {
 
   addMessageTemplate = (message) => {
     let messageToAdd = {...message, id: this.state.messages.length + 1};
-    console.log(messageToAdd);
-    this.setState({messages: [...this.state.messages, messageToAdd]});
+    axios({
+      method: 'POST',
+      url: '/api/newmessage',
+      data: messageToAdd
+    })
+    .then(response => this.getMessages())
+    .catch(err => console.log(err));
+  }
+
+  showTrue = () => {
+    this.setState({show: true});
+  }
+
+  showFalse = () => {
+    this.setState({show: false});
   }
 
   render() {
     return (
-      <div className="App">
-        <h1 className="App-title">Message Generator</h1>
-        <Guests 
-          guests={this.state.guests}
-          handleSelect={this.handleGuestSelect}
-        />
-        <Companies 
-          companies={this.state.companies}
-          handleSelect={this.handleCompanySelect}
-        />
-        <Message 
-          messages={this.state.messages}
-          handleMessageSelect={this.handleMessageSelect}
-        />
-        <p>{this.state.finalMessage}</p>
-        <button onClick={this.setFinalMessageText}>Generate Message</button>
-        <NewMessage 
-          selectedGuest={this.state.selectedGuest}
-          selectedCompany={this.state.selectedCompany}
-          addMessageTemplate={this.addMessageTemplate}
-        />
-
-      </div>
+        <div className="App">
+          <Guests 
+            guests={this.state.guests}
+            handleSelect={this.handleGuestSelect}
+          />
+          <Companies 
+            companies={this.state.companies}
+            handleSelect={this.handleCompanySelect}
+          />
+          <Message 
+            messages={this.state.messages}
+            handleMessageSelect={this.handleMessageSelect}
+          />
+          <p>{this.state.finalMessage}</p>
+          <button className="btnImportant" onClick={this.setFinalMessageText}>See Message</button>
+          <p>- OR -</p>
+          <button onClick={this.showTrue} className="btnImportant">Create Custom Template</button>
+          <NewMessage 
+            selectedGuest={this.state.selectedGuest}
+            selectedCompany={this.state.selectedCompany}
+            addMessageTemplate={this.addMessageTemplate}
+            show={this.state.show}
+            showFalse={this.showFalse}
+          />
+        </div>
     );
   }
 }
