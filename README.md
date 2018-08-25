@@ -8,6 +8,7 @@ To run the application:
 
 
 Design Decisions:
+
 Large scale I tried to keep functionality and data storage separate. My parent component houses most of
 the data (there is one exception in the NewMessage component). I immediately fetch the json data from all
 three json files, and house those separately in the app's state. I did this because it will be easier to
@@ -21,7 +22,7 @@ Application Language:
 
 I wrote this application in javascript using nodejs on the backend and React on the front end.
 I like how organized React is, using components to separate functionality and data in the application.
-It is also what I am most familiar with (we learned wrote software in javascript at Prime).
+It is also what I am most familiar with (we wrote software in javascript at Prime).
 
 
 Process for verifying correctness:
