@@ -33,10 +33,11 @@ a test suite using Mocha with the expect library.
 
 What I'd do with more time:
 
-I think it would be pretty cool to bring in an api to give more information that would be useful. My
-first thought is a weather api that checks out the day's weather and sends a text in the morning to
-all hotel guests on what that looks like. Also some type of interactivity would be cool, like depending
-on where the user texts back yes or no, that would prompt another message to go out.
+First I would build the test suite. I think it would be pretty cool to bring in an api to give more 
+information that would be useful. My first thought is a weather api that checks out the day's weather 
+and sends a text in the morning to all hotel guests on what that looks like. Also some type of 
+interactivity would be cool, like depending on where the user texts back yes or no, that would prompt 
+another message to go out.
 
 
 
