@@ -22,7 +22,7 @@
     {
       "id": 5,
       "messageDescription": "Reservation Overview",
-      "messageText": "%greeting% %firstName%, you are staying in room %roomNumber% from %startTime% until %endTime%"
+      "messageText": "%greeting% %firstName%, you are staying in room %roomNumber% from %startDate% until %endDate%"
     },
     {
       "id": 6,
