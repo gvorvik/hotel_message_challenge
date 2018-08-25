@@ -43,8 +43,6 @@ class App extends Component {
         messageText: '',
       },
       show: false,
-      startTime: '',
-      endTime: '',
       finalMessage: '',
     }
 
@@ -130,7 +128,7 @@ class App extends Component {
   }
 
   handleCompanySelect = (e) => {
-    if(this.state.selectedGuest.id !== '') {
+     if(this.state.selectedGuest.id !== '') {
       this.setState({
         selectedGuest:{
           ...this.state.selectedGuest,
@@ -141,7 +139,7 @@ class App extends Component {
           }
         }
       })
-    };
+     };
     let selectedCompany;
     this.state.companies.forEach(company => {
       if (company.id === Number(e.target.value)) {
@@ -210,13 +208,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Guests
-          guests={this.state.guests}
-          handleSelect={this.handleGuestSelect}
-        />
         <Companies
           companies={this.state.companies}
           handleSelect={this.handleCompanySelect}
+        />
+        <Guests
+          guests={this.state.guests}
+          handleSelect={this.handleGuestSelect}
         />
         <Message
           messages={this.state.messages}
