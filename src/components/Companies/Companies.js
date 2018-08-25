@@ -8,7 +8,7 @@ const Companies = (props) => {
 
     return(
         <div>
-            <h2>Please select a company</h2>
+            <h2>Please Select a Company</h2>
             <select onChange={props.handleSelect} defaultValue=" ">
                 <option value=" " disabled> </option>
                 {companies}

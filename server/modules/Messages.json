@@ -6,22 +6,27 @@
     },
     {
       "id": 2,
-      "messageDescription": "Goodbye",
-      "messageText": "%greeting% %firstName%, thanks so much for staying, and we hope to see you again!"
-    },
-    {
-      "id": 3,
       "messageDescription": "Breakfast",
       "messageText": "%greeting% %firstName% %lastName%, just so you know breakfast will be served until 11AM"
     },
     {
-      "id": 4,
+      "id": 3,
       "messageDescription": "Weather",
       "messageText": "%greeting% %firstName%, it looks like it's going to be a nice day here in %city%. Let us know if you have questions about things to do in the city."
     },
     {
-      "id": 5,
+      "id": 4,
       "messageDescription": "Housekeeping",
       "messageText": "%greeting% %firstName%, is now a good time for housekeeping to visit room %roomNumber%? Please text back yes or no."
+    },
+    {
+      "id": 5,
+      "messageDescription": "Reservation Overview",
+      "messageText": "%greeting% %firstName%, you are staying in room %roomNumber% from %startTime% until %endTime%"
+    },
+    {
+      "id": 6,
+      "messageDescription": "Arrival and Departure",
+      "messageText": "%greeting% %firstName%, you checked in on %startDate% at %startTime% and checked out on %endDate% at %endTime%"
     }
 ]
